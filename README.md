@@ -258,7 +258,7 @@ yarn create react-app github-finder --template typescript
 
 **DO NOT FORK this repository**
 
-Create your own **private** repository, and invite @grygy, @jan-ondruch as collaborators. Then add the solution there.
+Create your own **private** repository, and invite @grygy, @jan-ondruch, and @konecnaz as collaborators. Then add the solution there.
 ## Bonus (don't need to be in the below specific order)
 
 - Deal with errors coming from the backend
