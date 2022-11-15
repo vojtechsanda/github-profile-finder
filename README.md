@@ -258,12 +258,11 @@ yarn create react-app github-finder --template typescript
 
 **DO NOT FORK this repository**
 
-Create your own repository, and add the solution there.
-
+Create your own **private** repository, and invite @grygy, @jan-ondruch as collaborators. Then add the solution there.
 ## Bonus (don't need to be in the below specific order)
 
 - Deal with errors coming from the backend
+- Add React Context if relevant (e.g., switching between light/dark mode)
 - Try to keep clean git history with meaningful messages
-- Add React Context if relevant (e.g., dark mode)
 - Show common tools used for your daily development environment (linters, code formatter, and so on)
 - Use types with TypeScript
