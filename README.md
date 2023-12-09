@@ -9,7 +9,7 @@ Create a UI web application that retrieves and displays the user repositories an
 ## UX/UI
 
 It's up to you. It should probably include an input to enter the username, one area to display the user's repositories, and another area to show the organizations.
- 
+
 ## Retrieving data (GitHub API)
 
 You will be using GitHub REST API described below. The baseline URL is `https://api.github.com`. Complete documentation can be found [here](https://docs.github.com/en/rest).
@@ -94,7 +94,7 @@ https://api.github.com/users/kiwi/repos
     "id": 1296269,
     "node_id": "MDEwOlJlcG9zaXRvcnkxMjk2MjY5",
     "name": "Hello-World",
-    "full_name": "octocat/Hello-World", 
+    "full_name": "octocat/Hello-World",
     "owner": {
       "login": "octocat",
       "id": 1,
@@ -170,12 +170,7 @@ https://api.github.com/users/kiwi/repos
     "default_branch": "master",
     "open_issues_count": 0,
     "is_template": false,
-    "topics": [
-      "octocat",
-      "atom",
-      "electron",
-      "api"
-    ],
+    "topics": ["octocat", "atom", "electron", "api"],
     "has_issues": true,
     "has_projects": true,
     "has_wiki": true,
@@ -196,6 +191,7 @@ https://api.github.com/users/kiwi/repos
   }
 ]
 ```
+
 </details>
 
 ### 3. List organizations for a user
@@ -233,6 +229,7 @@ https://api.github.com/users/kiwi/orgs
   }
 ]
 ```
+
 </details>
 
 ## Requirements
@@ -259,6 +256,7 @@ yarn create react-app github-finder --template typescript
 **DO NOT FORK this repository**
 
 Create your own **private** repository, and invite @grygy, @jan-ondruch, @kubqo, and @konecnazuzana as collaborators. Then add the solution there.
+
 ## Bonus (don't need to be in the below specific order)
 
 - Deal with errors coming from the backend
