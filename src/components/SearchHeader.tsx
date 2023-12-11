@@ -1,7 +1,9 @@
 import { Box, Button, Container, Stack, TextField } from '@mui/material';
+import type { SxProps, Theme } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import type { FieldErrors, Resolver, SubmitHandler } from 'react-hook-form';
 import { AppAvatar } from '.';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface FormData {
   githubAccount: string;
@@ -24,7 +26,11 @@ const formResolver: Resolver<FormData> = (values) => {
   };
 };
 
-export default function SearchHeader() {
+interface SearchHeaderProps {
+  sx?: SxProps<Theme> | undefined;
+}
+
+export default function SearchHeader({ sx }: SearchHeaderProps) {
   const {
     register,
     handleSubmit,
@@ -33,15 +39,18 @@ export default function SearchHeader() {
     resolver: formResolver,
   });
 
+  const navigate = useNavigate();
+  const { accountId } = useParams();
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+    navigate(`/account/${data.githubAccount}`);
   };
 
   {
     /* TODO: Remove the negative margin on other than the entry view */
   }
   return (
-    <Container maxWidth="xs" sx={{ marginTop: '-4rem' }}>
+    <Container maxWidth="xs" sx={{ marginTop: '-4rem', ...sx }} disableGutters>
       <form onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
         <Stack alignItems="center" gap={2}>
           <AppAvatar />
@@ -52,6 +61,7 @@ export default function SearchHeader() {
               fullWidth
               error={!!errors.githubAccount}
               helperText={errors.githubAccount?.message}
+              defaultValue={accountId}
               {...register('githubAccount')}
               InputProps={{
                 endAdornment: (

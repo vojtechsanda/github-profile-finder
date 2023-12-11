@@ -3,6 +3,7 @@ import Root from '@/pages/Root.tsx';
 import Account from '@/pages/Account.tsx';
 import AccountError from '@/pages/AccountError.tsx';
 import Error from '@/pages/Error.tsx';
+import { accountLoader } from '@/loaders/accountLoader';
 
 export const routes: RouteObject[] = [
   {
@@ -13,7 +14,7 @@ export const routes: RouteObject[] = [
       {
         path: 'account/:accountId',
         element: <Account />,
-        loader: () => [],
+        loader: accountLoader,
         errorElement: <AccountError />,
       },
     ],
