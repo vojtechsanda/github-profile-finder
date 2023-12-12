@@ -1,4 +1,5 @@
 import { Box, List, Typography } from '@mui/material';
+import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function ExpandableList<T extends JSX.Element>({
@@ -44,26 +45,31 @@ export default function ExpandableList<T extends JSX.Element>({
           flexDirection: 'column',
         }}
       >
-        {list.length === 0 && emptyMessage && <Typography>{emptyMessage}</Typography>}
-        {...list.slice(0, visibleCount)}
-        {list.length > initialCount && (
-          <Typography
-            variant="caption"
-            component="p"
-            sx={{
-              cursor: 'pointer',
-              width: 'max-content',
-              marginX: 'auto',
-            }}
-            tabIndex={0}
-          >
-            {visibleCount < list.length ? (
-              <span onClick={showMore}>Show more</span>
-            ) : (
-              <span onClick={showLess}>Show less</span>
-            )}
-          </Typography>
-        )}
+        <AnimatePresence>
+          {list.length === 0 && emptyMessage && <Typography>{emptyMessage}</Typography>}
+          {...list.slice(0, visibleCount)}
+          {list.length > initialCount && (
+            <Typography
+              variant="caption"
+              component="p"
+              sx={{
+                width: 'max-content',
+                marginX: 'auto',
+              }}
+              tabIndex={0}
+            >
+              <Box
+                onClick={visibleCount < list.length ? showMore : showLess}
+                component="span"
+                sx={{
+                  cursor: 'pointer',
+                }}
+              >
+                {visibleCount < list.length ? 'Show more' : 'Show less'}
+              </Box>
+            </Typography>
+          )}
+        </AnimatePresence>
       </List>
     </Box>
   );

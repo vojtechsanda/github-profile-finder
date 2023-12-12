@@ -1,6 +1,7 @@
 import { Container } from '@mui/material';
 import { SearchHeader } from '@/components';
 import { Outlet } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 
 export default function Root() {
   return (
@@ -14,8 +15,10 @@ export default function Root() {
       }}
     >
       <Container maxWidth="lg" disableGutters>
-        <SearchHeader />
-        <Outlet />
+        <AnimatePresence>
+          <SearchHeader />
+          <Outlet />
+        </AnimatePresence>
       </Container>
     </Container>
   );

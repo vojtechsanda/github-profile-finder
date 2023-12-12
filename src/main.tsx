@@ -9,14 +9,17 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { theme } from './styles/theme.ts';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { routes } from './routes/routes.tsx';
+import { MotionConfig } from 'framer-motion';
 
 const router = createHashRouter(routes);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <RouterProvider router={router} />
+      <MotionConfig transition={{ duration: 0.5 }}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </MotionConfig>
     </ThemeProvider>
   </StrictMode>,
 );

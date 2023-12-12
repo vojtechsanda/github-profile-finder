@@ -5,6 +5,8 @@ import type { FieldErrors, Resolver, SubmitHandler } from 'react-hook-form';
 import { AppAvatar } from '.';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { getGeneralFadeIn } from '@/utils/animationUtils';
 
 interface FormData {
   githubAccount: string;
@@ -54,7 +56,7 @@ export default function SearchHeader({ sx }: SearchHeaderProps) {
 
   const additionalSx: SxProps<Theme> = accountId
     ? {
-        marginBottom: '3rem',
+        marginBottom: '2rem',
       }
     : {
         marginBottom: '1rem',
@@ -62,29 +64,31 @@ export default function SearchHeader({ sx }: SearchHeaderProps) {
       };
 
   return (
-    <Container maxWidth="xs" sx={{ ...additionalSx, ...sx }} disableGutters>
-      <form onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
-        <Stack alignItems="center" gap={2}>
-          <AppAvatar />
-          <Box sx={{ position: 'relative', width: '100%' }}>
-            <TextField
-              label="GitHub account"
-              sx={{ bgcolor: 'background.default' }}
-              fullWidth
-              error={!!errors.githubAccount}
-              helperText={errors.githubAccount?.message}
-              {...register('githubAccount')}
-              InputProps={{
-                endAdornment: (
-                  <Button variant="contained" type="submit">
-                    Access
-                  </Button>
-                ),
-              }}
-            />
-          </Box>
-        </Stack>
-      </form>
-    </Container>
+    <motion.div key={`search`} {...getGeneralFadeIn()}>
+      <Container maxWidth="xs" sx={{ ...additionalSx, ...sx }} disableGutters key={accountId}>
+        <form onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
+          <Stack alignItems="center" gap={2}>
+            <AppAvatar />
+            <Box sx={{ position: 'relative', width: '100%' }}>
+              <TextField
+                label="GitHub account"
+                sx={{ bgcolor: 'background.default' }}
+                fullWidth
+                error={!!errors.githubAccount}
+                helperText={errors.githubAccount?.message}
+                {...register('githubAccount')}
+                InputProps={{
+                  endAdornment: (
+                    <Button variant="contained" type="submit">
+                      Access
+                    </Button>
+                  ),
+                }}
+              />
+            </Box>
+          </Stack>
+        </form>
+      </Container>
+    </motion.div>
   );
 }

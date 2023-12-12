@@ -4,6 +4,8 @@ import { PlainLink } from '.';
 import { AccountRepository } from '@/types/Repository';
 import { StarBorderOutlined, BugReportOutlined, TerminalOutlined } from '@mui/icons-material';
 import { formatNumber } from '@/utils/numberUtils';
+import { motion } from 'framer-motion';
+import { getGeneralFadeIn } from '@/utils/animationUtils';
 
 function RepositoryChip({
   label,
@@ -21,7 +23,7 @@ function RepositoryChip({
 
 export default function OrganizationListItem(repository: AccountRepository) {
   return (
-    <>
+    <motion.div key={`repository-item-${repository.id}`} {...getGeneralFadeIn()}>
       <ListItem
         key={repository.id}
         sx={{
@@ -84,6 +86,6 @@ export default function OrganizationListItem(repository: AccountRepository) {
           )}
         </Box>
       </ListItem>
-    </>
+    </motion.div>
   );
 }
