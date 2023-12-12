@@ -6,11 +6,13 @@ export default function ExpandableList<T extends JSX.Element>({
   title,
   initialCount = 3,
   resetTrigger,
+  emptyMessage,
 }: {
   list: T[];
   title?: string;
   initialCount?: number;
   resetTrigger?: unknown;
+  emptyMessage?: string;
 }) {
   const [visibleCount, setVisibleCount] = useState(initialCount);
 
@@ -42,6 +44,7 @@ export default function ExpandableList<T extends JSX.Element>({
           flexDirection: 'column',
         }}
       >
+        {list.length === 0 && emptyMessage && <Typography>{emptyMessage}</Typography>}
         {...list.slice(0, visibleCount)}
         {list.length > initialCount && (
           <Typography

@@ -18,6 +18,7 @@ export default function AccountRepositories(account: ExtendedAccount) {
       })}
       title="Repositories"
       resetTrigger={account.login}
+      emptyMessage={`${account.name ?? account.login} has no repositories.`}
     />
   );
 }
