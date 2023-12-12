@@ -1,10 +1,10 @@
-import { Organization } from './Organization';
-import { Repository } from './Repository';
-import { Endpoints } from '@octokit/types';
+import type { Organization } from './Organization';
+import type { AccountRepository } from './Repository';
+import type { Endpoints } from '@octokit/types';
 
-export type CoreAccount = Endpoints['GET /users/{username}']['response']['data'];
+export type Account = Endpoints['GET /users/{username}']['response']['data'];
 
-export type Account = CoreAccount & {
+export type ExtendedAccount = Account & {
   organizations: Organization[];
-  repositories: Repository[];
+  repositories: AccountRepository[];
 };
