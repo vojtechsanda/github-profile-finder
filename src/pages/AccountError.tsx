@@ -6,7 +6,7 @@ export default function AccountError() {
   const error = useAsyncError();
 
   if (error instanceof AxiosError && error.response?.status === 404) {
-    return <Error message="We are sorry, but account with this name does not exist" />;
+    return <Error message="We are lost, couldn't find this one!" />;
   }
   return <Error />;
 }
