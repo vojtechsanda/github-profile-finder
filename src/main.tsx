@@ -7,12 +7,10 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { theme } from './styles/theme.ts';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { routes } from './routes/routes.tsx';
 
-const router = createBrowserRouter(routes, {
-  basename: '/inqool-react-interview',
-});
+const router = createHashRouter(routes);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
