@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import type { FieldErrors, Resolver, SubmitHandler } from 'react-hook-form';
 import { AppAvatar } from '.';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 interface FormData {
   githubAccount: string;
@@ -12,7 +13,7 @@ interface FormData {
 const formResolver: Resolver<FormData> = (values) => {
   const errors: FieldErrors<FormData> = {};
 
-  const isFilled = values?.githubAccount?.length > 0;
+  const isFilled = values?.githubAccount?.trim()?.length > 0;
   if (!isFilled) {
     errors.githubAccount = {
       type: 'required',
@@ -32,6 +33,7 @@ interface SearchHeaderProps {
 
 export default function SearchHeader({ sx }: SearchHeaderProps) {
   const {
+    setValue,
     register,
     handleSubmit,
     formState: { errors },
@@ -42,8 +44,12 @@ export default function SearchHeader({ sx }: SearchHeaderProps) {
   const navigate = useNavigate();
   const { accountId } = useParams();
 
+  useEffect(() => {
+    setValue('githubAccount', accountId ?? '');
+  }, [accountId, setValue]);
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    navigate(`/account/${data.githubAccount}`);
+    navigate(`/account/${encodeURIComponent(data.githubAccount)}`);
   };
 
   const additionalSx: SxProps<Theme> = accountId
@@ -67,7 +73,6 @@ export default function SearchHeader({ sx }: SearchHeaderProps) {
               fullWidth
               error={!!errors.githubAccount}
               helperText={errors.githubAccount?.message}
-              defaultValue={accountId}
               {...register('githubAccount')}
               InputProps={{
                 endAdornment: (
