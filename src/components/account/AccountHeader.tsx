@@ -1,8 +1,8 @@
 import { ExtendedAccount } from '@/types/Account';
 import { formatDate } from '@/utils/dateUtils';
 import { Avatar, Badge, Box, Typography } from '@mui/material';
-import { PlainLink } from '..';
-import { formatNumber } from '../../utils/numberUtils';
+import { PlainLink } from '@/components';
+import { formatNumber } from '@/utils/numberUtils';
 
 export default function AccountHeader(account: ExtendedAccount) {
   const formattedDate = formatDate(new Date(account.created_at));

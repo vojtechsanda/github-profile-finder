@@ -2,19 +2,21 @@ import { Box, List, Typography } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+export interface ExpandableListProps<T extends JSX.Element> {
+  list: T[];
+  title?: string;
+  initialCount?: number;
+  resetTrigger?: unknown;
+  emptyMessage?: string;
+}
+
 export default function ExpandableList<T extends JSX.Element>({
   list,
   title,
   initialCount = 3,
   resetTrigger,
   emptyMessage,
-}: {
-  list: T[];
-  title?: string;
-  initialCount?: number;
-  resetTrigger?: unknown;
-  emptyMessage?: string;
-}) {
+}: ExpandableListProps<T>) {
   const [visibleCount, setVisibleCount] = useState(initialCount);
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import { Avatar, ListItem, ListItemAvatar, ListItemText, Tooltip } from '@mui/material';
-import { Organization } from '../types/Organization';
+import { Organization } from '@/types/Organization';
 import { getLineLimitationSx } from '@/utils/sxUtils';
 import { PlainLink } from '.';
 import { motion } from 'framer-motion';

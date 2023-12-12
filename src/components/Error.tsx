@@ -1,10 +1,12 @@
 import { Typography } from '@mui/material';
 
+export interface ErrorProps {
+  message?: string;
+}
+
 export default function Error({
   message = 'Unexpected error, please try again later',
-}: {
-  message?: string;
-}) {
+}: ErrorProps) {
   return (
     <Typography
       color="error"

@@ -1,5 +1,5 @@
 import { ExtendedAccount } from '@/types/Account';
-import { ExpandableList, OrganizationListItem } from '..';
+import { ExpandableList, OrganizationListItem } from '@/components';
 
 export default function AccountOrganizations(account: ExtendedAccount) {
   return (

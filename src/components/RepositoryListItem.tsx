@@ -2,16 +2,22 @@ import { Box, Chip, ChipTypeMap, ListItem, ListItemText, Tooltip } from '@mui/ma
 import { getLineLimitationSx } from '@/utils/sxUtils';
 import { PlainLink } from '.';
 import { AccountRepository } from '@/types/Repository';
-import { StarBorderOutlined, BugReportOutlined, TerminalOutlined } from '@mui/icons-material';
+import {
+  StarBorderOutlined,
+  AltRouteOutlined,
+  BugReportOutlined,
+  TerminalOutlined,
+} from '@mui/icons-material';
 import { formatNumber } from '@/utils/numberUtils';
 import { motion } from 'framer-motion';
 import { getGeneralFadeIn } from '@/utils/animationUtils';
 
-function RepositoryChip({
-  label,
-  count,
-  ...props
-}: ChipTypeMap['props'] & { label: string; count?: number }) {
+type RepositoryChipProps = ChipTypeMap['props'] & {
+  label: string;
+  count?: number;
+};
+
+function RepositoryChip({ label, count, ...props }: RepositoryChipProps) {
   let newLabel = label;
 
   if (typeof count === 'number') {
@@ -69,9 +75,9 @@ export default function OrganizationListItem(repository: AccountRepository) {
             icon={<StarBorderOutlined fontSize="small" />}
           />
           <RepositoryChip
-            label="star"
-            count={repository.stargazers_count ?? 0}
-            icon={<StarBorderOutlined fontSize="small" />}
+            label="fork"
+            count={repository.forks_count ?? 0}
+            icon={<AltRouteOutlined fontSize="small" />}
           />
           <RepositoryChip
             label="issue"

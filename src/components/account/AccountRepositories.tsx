@@ -1,5 +1,5 @@
 import { ExtendedAccount } from '@/types/Account';
-import { ExpandableList, RepositoryListItem } from '..';
+import { ExpandableList, RepositoryListItem } from '@/components';
 import { useMemo } from 'react';
 
 export default function AccountRepositories(account: ExtendedAccount) {
