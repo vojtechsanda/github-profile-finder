@@ -64,12 +64,11 @@ export class GitHubApi {
   }
 
   async getExtendedAccount(username: string) {
+    // Get the account
     const accountResult = await this.getAccount(username);
-
     if (accountResult.isErr) return accountResult;
 
-    const account = accountResult.unwrap();
-
+    // Get accounts repositories and organizations in parallel
     const [organizationsResult, repositoriesResult] = await Promise.all([
       this.getAccountOrganizations(username),
       this.getAccountRepositories(username),
@@ -78,7 +77,19 @@ export class GitHubApi {
     if (organizationsResult.isErr) return organizationsResult;
     if (repositoriesResult.isErr) return repositoriesResult;
 
-    const organizations = organizationsResult.unwrap();
+    // Get extended info about accounts organizations in parallel
+    const accountOrganizations = organizationsResult.unwrap();
+    const organizationsResults = await Promise.all(
+      accountOrganizations.map(
+        async (accountOrganization) => await this.getOrganization(accountOrganization.login),
+      ),
+    );
+
+    const failedOrganizationResult = organizationsResults.find((result) => result.isErr);
+    if (failedOrganizationResult) return failedOrganizationResult;
+
+    const account = accountResult.unwrap();
+    const organizations = organizationsResults.map((result) => result.unwrap());
     const repositories = repositoriesResult.unwrap();
 
     const extendedAccount = {
