@@ -17,6 +17,7 @@ export default function AccountRepositories(account: ExtendedAccount) {
         return <RepositoryListItem {...repository} key={repository.id} />;
       })}
       title="Repositories"
+      resetTrigger={account.login}
     />
   );
 }

@@ -5,7 +5,13 @@ import { PlainLink } from '.';
 
 export default function OrganizationListItem(organization: Organization) {
   return (
-    <ListItem key={organization.login}>
+    <ListItem
+      key={organization.login}
+      sx={{
+        border: '1px solid',
+        borderColor: 'divider',
+      }}
+    >
       <ListItemAvatar>
         <Avatar src={organization.avatar_url} />
       </ListItemAvatar>

@@ -8,6 +8,7 @@ export default function AccountOrganizations(account: ExtendedAccount) {
         <OrganizationListItem key={organization.id} {...organization} />
       ))}
       title="Organizations"
+      resetTrigger={account.login}
     />
   );
 }

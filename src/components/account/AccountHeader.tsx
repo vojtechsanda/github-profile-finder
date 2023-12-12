@@ -2,6 +2,7 @@ import { ExtendedAccount } from '@/types/Account';
 import { formatDate } from '@/utils/dateUtils';
 import { Avatar, Badge, Box, Typography } from '@mui/material';
 import { PlainLink } from '..';
+import { formatNumber } from '../../utils/numberUtils';
 
 export default function AccountHeader(account: ExtendedAccount) {
   const formattedDate = formatDate(new Date(account.created_at));
@@ -10,6 +11,7 @@ export default function AccountHeader(account: ExtendedAccount) {
     <Box
       sx={{
         textAlign: 'center',
+        paddingBottom: '1rem',
       }}
     >
       <Badge
@@ -33,13 +35,20 @@ export default function AccountHeader(account: ExtendedAccount) {
           src={account.avatar_url}
         />
       </Badge>
-      <Typography variant="h4" component="h1">
+      <Typography
+        variant="h4"
+        component="h1"
+        sx={{
+          marginBottom: '0.5rem',
+        }}
+      >
         <PlainLink to={account.html_url} target="_blank" rel="noopener noreferrer">
           {account.name ?? account.login}
         </PlainLink>
       </Typography>
       <Typography variant="body1" component="p">
-        Followers {account.followers} | Following {account.following}
+        <b>{formatNumber(account.followers)}</b> Followers |{' '}
+        <b>{formatNumber(account.following)}</b> Following
       </Typography>
       <Typography variant="caption" color="text.secondary" component="p">
         Member since {formattedDate}

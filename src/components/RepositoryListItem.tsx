@@ -1,18 +1,22 @@
-import { Chip, ChipTypeMap, ListItem, ListItemText, Stack, Tooltip } from '@mui/material';
+import { Box, Chip, ChipTypeMap, ListItem, ListItemText, Tooltip } from '@mui/material';
 import { getLineLimitationSx } from '@/utils/sxUtils';
 import { PlainLink } from '.';
 import { AccountRepository } from '@/types/Repository';
-import { StarBorderOutlined, AltRouteOutlined } from '@mui/icons-material';
+import { StarBorderOutlined, BugReportOutlined, TerminalOutlined } from '@mui/icons-material';
 import { formatNumber } from '@/utils/numberUtils';
 
 function RepositoryChip({
   label,
   count,
   ...props
-}: ChipTypeMap['props'] & { label: string; count: number }) {
-  const multiReadyLabel = `${formatNumber(count)} ${label}${count !== 1 ? 's' : ''}`;
+}: ChipTypeMap['props'] & { label: string; count?: number }) {
+  let newLabel = label;
 
-  return <Chip {...props} label={multiReadyLabel} variant="outlined" />;
+  if (typeof count === 'number') {
+    newLabel = `${formatNumber(count)} ${label}${count !== 1 ? 's' : ''}`;
+  }
+
+  return <Chip {...props} label={newLabel} variant="outlined" />;
 }
 
 export default function OrganizationListItem(repository: AccountRepository) {
@@ -23,6 +27,8 @@ export default function OrganizationListItem(repository: AccountRepository) {
         sx={{
           flexDirection: 'column',
           alignItems: 'flex-start',
+          border: '1px solid',
+          borderColor: 'divider',
         }}
       >
         <ListItemText
@@ -44,12 +50,15 @@ export default function OrganizationListItem(repository: AccountRepository) {
           secondaryTypographyProps={{
             sx: getLineLimitationSx(1),
           }}
-        />
-        <Stack
-          direction="row"
-          spacing={1}
           sx={{
-            marginTop: '0.25rem',
+            marginTop: 0,
+          }}
+        />
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '0.5rem',
+            flexWrap: 'wrap',
           }}
         >
           <RepositoryChip
@@ -58,11 +67,22 @@ export default function OrganizationListItem(repository: AccountRepository) {
             icon={<StarBorderOutlined fontSize="small" />}
           />
           <RepositoryChip
-            label="fork"
+            label="star"
             count={repository.stargazers_count ?? 0}
-            icon={<AltRouteOutlined fontSize="small" />}
+            icon={<StarBorderOutlined fontSize="small" />}
           />
-        </Stack>
+          <RepositoryChip
+            label="issue"
+            count={repository.open_issues_count ?? 0}
+            icon={<BugReportOutlined fontSize="small" />}
+          />
+          {repository.language && (
+            <RepositoryChip
+              label={repository.language}
+              icon={<TerminalOutlined fontSize="small" />}
+            />
+          )}
+        </Box>
       </ListItem>
     </>
   );

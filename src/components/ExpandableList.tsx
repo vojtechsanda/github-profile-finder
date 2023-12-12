@@ -1,16 +1,22 @@
-import { List, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Box, List, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 export default function ExpandableList<T extends JSX.Element>({
   list,
   title,
   initialCount = 3,
+  resetTrigger,
 }: {
   list: T[];
   title?: string;
   initialCount?: number;
+  resetTrigger?: unknown;
 }) {
   const [visibleCount, setVisibleCount] = useState(initialCount);
+
+  useEffect(() => {
+    setVisibleCount(initialCount);
+  }, [initialCount, resetTrigger]);
 
   const showMore = () => {
     setVisibleCount((currentCount) => {
@@ -23,7 +29,7 @@ export default function ExpandableList<T extends JSX.Element>({
   };
 
   return (
-    <>
+    <Box>
       {!!title && (
         <Typography variant="h6" component="h2">
           {title}
@@ -31,7 +37,9 @@ export default function ExpandableList<T extends JSX.Element>({
       )}
       <List
         sx={{
-          marginTop: '0!important',
+          gap: '1.5rem',
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
         {...list.slice(0, visibleCount)}
@@ -40,9 +48,11 @@ export default function ExpandableList<T extends JSX.Element>({
             variant="caption"
             component="p"
             sx={{
-              textAlign: 'center',
-              marginTop: '0.5rem',
+              cursor: 'pointer',
+              width: 'max-content',
+              marginX: 'auto',
             }}
+            tabIndex={0}
           >
             {visibleCount < list.length ? (
               <span onClick={showMore}>Show more</span>
@@ -52,6 +62,6 @@ export default function ExpandableList<T extends JSX.Element>({
           </Typography>
         )}
       </List>
-    </>
+    </Box>
   );
 }

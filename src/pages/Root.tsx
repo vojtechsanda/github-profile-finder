@@ -10,14 +10,11 @@ export default function Root() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingY: '2rem',
       }}
     >
       <Container maxWidth="lg" disableGutters>
-        <SearchHeader
-          sx={{
-            marginBottom: '1rem',
-          }}
-        />
+        <SearchHeader />
         <Outlet />
       </Container>
     </Container>

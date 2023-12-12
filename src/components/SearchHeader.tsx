@@ -46,11 +46,17 @@ export default function SearchHeader({ sx }: SearchHeaderProps) {
     navigate(`/account/${data.githubAccount}`);
   };
 
-  {
-    /* TODO: Remove the negative margin on other than the entry view */
-  }
+  const additionalSx: SxProps<Theme> = accountId
+    ? {
+        marginBottom: '3rem',
+      }
+    : {
+        marginBottom: '1rem',
+        marginTop: '-4rem',
+      };
+
   return (
-    <Container maxWidth="xs" sx={{ marginTop: '-4rem', ...sx }} disableGutters>
+    <Container maxWidth="xs" sx={{ ...additionalSx, ...sx }} disableGutters>
       <form onSubmit={(event) => void handleSubmit(onSubmit)(event)}>
         <Stack alignItems="center" gap={2}>
           <AppAvatar />

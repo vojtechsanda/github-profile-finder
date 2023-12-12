@@ -21,4 +21,14 @@ export const theme = createTheme({
       light: '#fbb8e9',
     },
   },
+  components: {
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          borderRadius: '0.25rem',
+          padding: '0.75rem 1rem',
+        },
+      },
+    },
+  },
 });
