@@ -9,7 +9,9 @@ export default function AccountOrganizations(account: ExtendedAccount) {
       ))}
       title="Organizations"
       resetTrigger={account.login}
-      emptyMessage={`${account.name ?? account.login} is not a member of any organizations.`}
+      emptyMessage={`${
+        account.name ?? account.login
+      } is not publicly a member of any organizations.`}
     />
   );
 }
