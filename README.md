@@ -1,4 +1,4 @@
-# JS/TS Interview Project (React)
+# GitHub profile finder
 
 This is a small project for a React TypeScript interview.
 
@@ -8,7 +8,7 @@ Create a UI web application that retrieves and displays the user repositories an
 
 ## UX/UI
 
-It's up to you. It should probably include an input to enter the username, one area to display the user's repositories, and another area to show the organizations.
+It should include an input to enter the username, one area to display the user's repositories, and another area to show the organizations.
 
 ## Retrieving data (GitHub API)
 
@@ -250,12 +250,6 @@ yarn create react-app github-finder --template typescript
 ```
 
 ---
-
-## Submitting the solution
-
-**DO NOT FORK this repository**
-
-Create your own **private** repository, and invite @grygy, @jan-ondruch, @kubqo, and @konecnazuzana as collaborators. Then add the solution there.
 
 ## Bonus (don't need to be in the below specific order)
 
