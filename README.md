@@ -6,12 +6,20 @@ An interactive React application for searching and displaying GitHub user profil
 
 ## 📑 Table of Contents
 
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Sample Users](#-sample-users)
-- [Project Structure](#-project-structure)
-- [API Integration](#-api-integration)
-- [Getting Started](#-getting-started)
+- [🖼️ Screenshots](#-screenshots)
+- [🚀 Features](#-features)
+- [🛠️ Tech Stack](#-tech-stack)
+- [🎯 Usage](#-usage)
+  - [Getting started](#getting-started)
+  - [Sample Users](#sample-users)
+- [📦 Installation](#-installation)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [🚀 Development](#-development)
+  - [Available Scripts](#available-scripts)
+  - [Project Structure](#project-structure)
+  - [Key Components](#key-components)
+  - [API Integration](#api-integration)
 
 ## 🖼️ Screenshots
 
@@ -49,7 +57,13 @@ Here’s a quick look at GitHub Profile Finder’s mobile interface:
 | **Build Tool**   | Vite                     |
 | **Code Quality** | ESLint + Prettier        |
 
-## 👥 Sample Users
+## 🎯 Usage
+
+### Getting started
+
+Search by GitHub account username and enjoy the profile overview
+
+### Sample Users
 
 | Username   | Description                     |
 | ---------- | ------------------------------- |
@@ -58,7 +72,47 @@ Here’s a quick look at GitHub Profile Finder’s mobile interface:
 | `torvalds` | Creator of Linux and Git        |
 | `gaearon`  | React core team member          |
 
-## 🧠 Project Structure
+## 📦 Installation
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/vojtechsanda/github-profile-finder.git
+cd github-profile-finder
+```
+
+2. Install dependencies
+
+```
+npm install
+```
+
+3. Start the development server:
+
+```
+npm run dev
+```
+
+## 🚀 Development
+
+### Available Scripts
+
+| Script               | Description                  |
+| -------------------- | ---------------------------- |
+| `npm run dev`        | Start development server     |
+| `npm run build`      | Build for production         |
+| `npm run preview`    | Preview the production build |
+| `npm run lint`       | Run ESLint                   |
+| `npm run type-check` | Run TypeScript type checking |
+
+### Project Structure
 
 ```
 src/
@@ -72,7 +126,16 @@ src/
 └── utils/        # Helper functions
 ```
 
-## 🔌 API Integration
+### Key Components
+
+- **SearchHeader** – Search form with validation
+- **AccountDetail** – Main component displaying the user profile
+- **AccountHeader** – Header with user information
+- **AccountRepositories** – List of repositories with filters
+- **AccountOrganizations** – List of user organizations
+- **GitHubApi** – Wrapper class for communication with the GitHub API
+
+### API Integration
 
 Uses GitHub REST API:
 
@@ -80,47 +143,6 @@ Uses GitHub REST API:
 - `GET /users/{username}/repos` – List of user repositories
 - `GET /users/{username}/orgs` – List of user organizations
 - `GET /orgs/{org}` – Organization detail
-
-## 📦 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
-
-```bash
-git clone https://github.com/vojtechsanda/github-profile-finder.git
-
-cd github-profile-finder
-
-npm install
-```
-
-### Development
-
-```
-npm run dev
-```
-
-### Build & Preview
-
-```
-npm run build
-
-npm run preview
-```
-
-### Available Scripts
-
-| Script               | Description                  |
-| -------------------- | ---------------------------- |
-| `npm run dev`        | Start development server     |
-| `npm run build`      | Build for production         |
-| `npm run preview`    | Preview the production build |
-| `npm run lint`       | Run ESLint                   |
-| `npm run type-check` | Run TypeScript type checking |
 
 ---
 
