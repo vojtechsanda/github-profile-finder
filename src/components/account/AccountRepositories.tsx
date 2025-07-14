@@ -5,9 +5,13 @@ import { useMemo } from 'react';
 export default function AccountRepositories(account: ExtendedAccount) {
   const sortedRepositories = useMemo(
     () =>
-      [...account.repositories].sort(
-        (a, b) => (b.stargazers_count ?? 0) - (a.stargazers_count ?? 0),
-      ),
+      [...account.repositories].sort((a, b) => {
+        if (!a.updated_at || !b.updated_at) return 0;
+
+        if (a.updated_at < b.updated_at) return 1;
+        if (a.updated_at > b.updated_at) return -1;
+        return 0;
+      }),
     [account.repositories],
   );
 
