@@ -12,7 +12,16 @@ An interactive React application for searching and displaying GitHub user profil
 - [Project Structure](#-project-structure)
 - [API Integration](#-api-integration)
 - [Getting Started](#-getting-started)
-- [Deployment](#-deployment)
+
+## 🖼️ Screenshots
+
+Here’s a quick look at GitHub Profile Finder’s mobile interface:
+
+| Search Page                              | Profile Page                               |
+| ---------------------------------------- | ------------------------------------------ |
+| ![Search Page](./screenshots/search.png) | ![Profile Page](./screenshots/profile.png) |
+
+👉 Try it yourself in the **[Live Demo](https://vojtechsanda.github.io/github-profile-finder/)**!
 
 ## 🚀 Features
 
