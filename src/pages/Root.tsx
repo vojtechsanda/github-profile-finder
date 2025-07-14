@@ -1,9 +1,16 @@
 import { Container } from '@mui/material';
 import { SearchHeader } from '@/components';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { useEffect } from 'react';
 
 export default function Root() {
+  const { accountId } = useParams();
+
+  useEffect(() => {
+    document.title = accountId ? `${accountId} | GitHub Profile Finder` : 'GitHub Profile Finder';
+  }, [accountId]);
+
   return (
     <Container
       sx={{
